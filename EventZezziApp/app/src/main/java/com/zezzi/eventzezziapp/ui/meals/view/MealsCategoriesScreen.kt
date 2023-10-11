@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material3.CircularProgressIndicator
@@ -25,14 +26,17 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.zezzi.eventzezziapp.navigation.AppBar
+import com.zezzi.eventzezziapp.navigation.NavigationState
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
 fun MealsCategoriesScreen(
     navController: NavController,
     viewModel: MealsCategoriesViewModel = viewModel()
 ) {
-    viewModel.getMeals()
+    if (viewModel.categoryUiState.categories.isEmpty()) {
+        viewModel.getMeals()
+    }
 
     Scaffold(
         topBar = {
@@ -60,7 +64,10 @@ fun MealsCategoriesScreen(
                         elevation = 2.dp,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(top = 16.dp)
+                            .padding(top = 16.dp),
+                        onClick = {
+                            navController.navigate(NavigationState.Meals.route)
+                        }
                     ) {
                         Column(
                             modifier = Modifier

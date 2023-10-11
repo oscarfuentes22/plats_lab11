@@ -50,7 +50,7 @@ android {
 }
 
 dependencies {
-    val navVersion = "2.7.3"
+    val navVersion = "2.7.4"
     val accompanistVersion = "0.32.0"
     implementation("androidx.compose.ui:ui-android:1.5.2")
     implementation("com.google.accompanist:accompanist-pager:$accompanistVersion")
