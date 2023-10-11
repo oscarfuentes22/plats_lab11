@@ -30,17 +30,18 @@ import com.zezzi.eventzezziapp.navigation.AppBar
 @Composable
 fun MealsScreen(
     navController: NavController,
+    category: String,
     viewModel: MealsCategoriesViewModel = viewModel()
 ) {
     viewModel.getMeals()
 
     Scaffold(
         topBar = {
-            AppBar(title = "Meals", navController = navController)
+            AppBar(title = "Meals for $category", navController = navController)
         }
     ) {
         Text(
-            text = "I am Meals screen", modifier = Modifier.padding(it)
+            text = "I am Meals screen for category: $category", modifier = Modifier.padding(it)
         )
     }
 }

@@ -19,8 +19,8 @@ fun Navigation(modifier: Modifier = Modifier) {
         composable(route = NavigationState.Categories.route) {
             MealsCategoriesScreen(navController)
         }
-        composable(route = NavigationState.Meals.route) {
-            MealsScreen(navController)
+        composable(route = NavigationState.Meals.route + "/{category}") { backstackEntry ->
+            MealsScreen(navController, backstackEntry.arguments?.getString("category") ?: "")
         }
     }
 }
