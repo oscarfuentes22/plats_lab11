@@ -14,6 +14,8 @@ class MealsCategoriesViewModel(private val repository: MealsRepository = MealsRe
         private set
 
     fun getMeals() {
+        categoryUiState = MealsCategoryUiState(emptyList(), loading = true)
+
         viewModelScope.launch {
             categoryUiState = MealsCategoryUiState(
                 categories = repository.getMeals().categories
